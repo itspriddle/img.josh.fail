@@ -1,0 +1,42 @@
+{% assign gifs = site.static_files | where: "gif", true | sort: "path" %}
+{% assign last_dir = false %}
+<ul>
+  {% comment %}First pass for subdirectories{% endcomment %}
+  {% for gif in gifs %}
+    {% assign base = gif.basename | append: gif.extname %}
+    {% assign dir = gif.path | remove_first: "/gifs/" | remove: base | default: "Unsorted" %}
+
+    {% if dir == "Unsorted" %}
+      {% continue %}
+    {% endif %}
+
+    {% if last_dir != dir %}
+      {% unless last_dir == false %}
+        </ul>
+      </li>
+      {% endunless %}
+      <li>
+        <ul>{{ dir }}
+    {% endif %}
+
+    <li><a href="{{ gif.path }}" title="{{ gif.basename }}" class="gif">{{ gif.basename }}</a></li>
+
+
+    {% assign last_dir = dir %}
+  {% endfor %}
+  {% comment %}Still in an open ul for the last subdirectory, so close it{% endcomment %}
+    </ul>
+  </li>
+  
+  <li>
+    <ul>Unsorted
+  {% for gif in gifs %}
+      {% assign base = gif.basename | append: gif.extname %}
+      {% assign dir = gif.path | remove_first: "/gifs/" | remove: base | default: "Unsorted" %}
+      {% if dir == "Unsorted" %}
+        <li><a href="{{ gif.path }}" title="{{ gif.basename }}" class="gif">{{ gif.basename }}</a></li>
+      {% endif %}
+  {% endfor %}
+    </ul>
+  </li>
+</ul>

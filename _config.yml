@@ -1,0 +1,35 @@
+# Site settings
+title: img.josh.fail
+
+# Plugin settings
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+timezone: 'America/New_York'
+
+# Files to exclude
+exclude:
+  - .tags
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - bin
+
+include:
+  - _pages
+
+# Sass setup
+sass:
+  sass_dir: assets/stylesheets
+  style: compressed
+
+defaults:
+  -
+    scope:
+      path: "gifs"
+    values:
+      gif: true

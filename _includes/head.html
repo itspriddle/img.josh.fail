@@ -1,0 +1,13 @@
+{%- if site.github.environment == "dotcom" %}
+{%- assign asset_hash = site.github.build_revision -%}
+{%- else -%}
+{%- assign asset_hash = site.time | date: "%s" -%}
+{%- endif -%}
+<head>
+  <meta charset="UTF-8">
+  <title>{% if page.title %}{{ page.title }}{% else %}{% if site.github.project_title %}{{ site.github.project_title }}{% else %}{{ site.github.url }}{% endif %}{% endif %}</title>
+  <meta name="description" content="{{ site.github.project_tagline }}">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,800' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/assets/stylesheets/main.css?v={{ asset_hash }}">
+  <meta name="viewport" content="initial-scale=1">
+</head>

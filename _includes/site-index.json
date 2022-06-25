@@ -1,0 +1,12 @@
+{% assign gifs = site.static_files | where: "gif", true %}
+[
+  {% for gif in gifs %}
+  {
+    "title": "{{ gif.basename }}",
+    "category": "",
+    "path": "{{ gif.path }}",
+    "modified_time": {{ gif.modified_time | date: "%s" }},
+    "tags": {{ gif.basename | split: "-" | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+]

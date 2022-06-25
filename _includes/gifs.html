@@ -1,0 +1,6 @@
+{% assign gifs = site.static_files | where: "gif", true | sort: "basename" %}
+<ul>
+  {% for gif in gifs %}
+    <li><a href="{{ gif.path }}" title="{{ gif.basename }}" class="gif">{{ gif.basename }}</a></li>
+  {% endfor %}
+</ul>
