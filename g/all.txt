@@ -1,0 +1,6 @@
+---
+layout: nil
+---
+{%- assign gifs = site.static_files | where: "gif", true | sort: "basename" -%}
+{% for gif in gifs %}{{ site.url | append: gif.path }}
+{% endfor -%}
