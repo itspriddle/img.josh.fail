@@ -30,6 +30,6 @@ sass:
 defaults:
   -
     scope:
-      path: "gifs"
+      path: "g"
     values:
       gif: true
